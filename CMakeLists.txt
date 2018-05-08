@@ -48,14 +48,14 @@ find_package (GLFW3 REQUIRED)
 include_directories(${GLFW3_INCLUDE_DIRS})
 link_libraries(${GLFW3_LIBRARIES})
 
-## sudo apt-get install libfreeimage-dev
-## NOTE: Same as with GLFW, libfreeimage-dev does not come with a
-## FindFreeImage.cmake file. Thus, we have to look for it after
-## setting the CMAKE_MODULE_PATH to include the cmake-modules/ directory
-## directory
-#find_package (FreeImage REQUIRED)
-#include_directories (${FREEIMAGE_INCLUDE_DIRS})
-#link_libraries(${FREEIMAGE_LIBRARIES})
+# sudo apt-get install libfreeimage-dev
+# NOTE: Same as with GLFW, libfreeimage-dev does not come with a
+# FindFreeImage.cmake file. Thus, we have to look for it after
+# setting the CMAKE_MODULE_PATH to include the cmake-modules/ directory
+# directory
+find_package (FreeImage REQUIRED)
+include_directories (${FREEIMAGE_INCLUDE_DIRS})
+link_libraries(${FREEIMAGE_LIBRARIES})
 
 # Gather up all the headers and sources in one variable: SOURCES
 set (SRC_DIR "src")
