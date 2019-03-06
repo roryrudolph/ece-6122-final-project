@@ -24,7 +24,7 @@ static float camx = 0.01f; // Camera location x
 static float camy = 20.0f; // Camera location y, this is the height
 static float camz = 0.01f; // Camera location z
 
-int verbose; // Global verbose
+int verbose = 0; // Global verbose
 
 /**
  * TODO Abstract into a Scene class
@@ -130,16 +130,31 @@ int main(int argc, char **argv)
 		printf("%*s: %s\n", pad, "Verbose", cfg.verbose ? "yes" : "no");
 	}
 
+	if (cfg.verbose)
+		printf("Creating %dx%d window '%s'\n", WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+
 	Window window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+	if (cfg.verbose)
+		printf("Creating the text writer\n");
 
 	// The text writer is used to write text onto the window
 	// It has no effect on the raytracing algorithm
 	TextWriter tw(VS_FONT_PATH, FS_FONT_PATH, TTF_PATH, 16);
 
+	if (cfg.verbose)
+		printf("Creating the raytracer\n");
+
 	// Initialize the raytracer
 	Raytracer raytracer(window.getWidth(), window.getHeight(), fov, 4);
 
+	if (cfg.verbose)
+		printf("Creating the shader program\n");
+
 	Shader shader1(VERTEX_SHADER_PATH, FRAGMENT_SHADER_PATH);
+
+	if (cfg.verbose)
+		printf("Creating scene layers\n");
 
 	Layer stageLayer(&shader1);
 	Layer modelLayer(&shader1);
@@ -297,7 +312,7 @@ int main(int argc, char **argv)
 			perf.reset();
 		}
 
-		engine.stepSimulation(1 / 60.0f); // Speed up to like 1/24 if too slow
+		engine.stepSimulation(1 / 120.0f); // Speed up to like 1/24 if too slow
 		std::vector<glm::vec3> positions;
 		engine.getMotionStates(positions);
 

@@ -25,7 +25,7 @@ This project is intended to work on Linux, primarily Ubuntu systems, and has not
 These libraries can be installed via the apt-get package manager like this:
 
 ```sh
-$ sudo apt-get install libgl1-mesa-dev libglew-dev libglm-dev libbullet-dev libfreetype6-dev libassimp-dev libglfw3-dev ffmpeg libfreeimage-dev
+$ sudo apt-get install cmake libgl1-mesa-dev libglew-dev libglm-dev libbullet-dev libfreetype6-dev libassimp-dev libglfw3-dev ffmpeg libfreeimage-dev
 ```
 
 **NOTE**: As of the latest update in May 2018, you have to run the program from the **bin** directory as the file paths for the Wavefront object files are hard-coded. I know this is bad, and it will be fixed later.
@@ -33,8 +33,10 @@ $ sudo apt-get install libgl1-mesa-dev libglew-dev libglm-dev libbullet-dev libf
 ```sh
 $ git clone https://github.com/roryrudolph/ece-6122-final-project.git
 $ cd ece-6122-final-project/
+$ mkdir bin
 $ cd bin/
 $ cmake ..
+$ make
 ```
 
 ## TODOs
